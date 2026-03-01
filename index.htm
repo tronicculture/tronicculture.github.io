@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<script>
+if (location.protocol !== 'https:') {
+    location.replace('https://' + location.host + location.pathname + location.search);
+}
+</script>
+
+
+
+<title>MrKay aka KundeVormHerrn</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('background.jpg'); /* Hintergrundbild hier ändern */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        color: white;
+        backdrop-filter: blur(10px);
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    .link-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .link-item:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .link-item img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    #redirectBox {
+        margin-top: 20px;
+        padding: 10px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 8px;
+        display: none;
+        word-break: break-all;
+    }
+
+    a {
+        color: #00d4ff;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tronic Culture Radio Show</h1>
+    <div id="links"></div>
+    <div id="redirectBox"></div>
+</div>
+
+<script>
+// ======== HIER DEINE LINKS EINTRAGEN ========
+const links = [
+    {
+        name: "Insta",
+        url: "https://www.instagram.com/tronicculture/",
+        image: null
+    },
+    {
+        name: "Hearthis",
+        url: "https://hearthis.at/tronic-culture-radios-show/",
+        image: null
+    }
+];
+// ============================================
+
+const linkContainer = document.getElementById("links");
+const redirectBox = document.getElementById("redirectBox");
+
+links.forEach(link => {
+    const div = document.createElement("div");
+    div.className = "link-item";
+
+    if (link.image) {
+        const img = document.createElement("img");
+        img.src = link.image;
+        div.appendChild(img);
+    }
+
+    const span = document.createElement("span");
+    span.textContent = link.name;
+    div.appendChild(span);
+
+    div.onclick = () => {
+        redirectBox.style.display = "block";
+        redirectBox.innerHTML = `
+            Weiterleiten zu:<br>
+            <a href="${link.url}" target="_blank">${link.url}</a>
+        `;
+    };
+
+    linkContainer.appendChild(div);
+});
+</script>
+
+</body>
+</html>
